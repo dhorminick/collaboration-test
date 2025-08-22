@@ -1,51 +1,53 @@
 <template>
-  <div class="min-h-screen flex flex-col items-center"> 
-    <form @submit.prevent="handleSignup" class="bg-white shadow-md">
-      <h1 class="text-2xl font-semibold">signup page</h1>
-      <!-- NAME -->
-      <div>
-        <Input 
-        label="Name"
-        pc="Enter your name"
-        type="text"
-        id="name"
-        v-model="userData.name"
-         />
-      </div>
+  <div class="min-h-screen flex justify-center pt-8">
+    <div class="w-full max-w-md px-4"> 
+      <h1 class="text-3xl font-semibold text-center mb-6">Signup Page</h1>
 
-      <!-- EMAIL -->
-      <div>
+      <form @submit.prevent="handleSignup" class="flex flex-col">
+        <!-- NAME -->
         <Input 
-        label="Email"
-        pc="Enter your email"
-        type="email"
-        id="email"
-        v-model="userData.email"
-        
-         />
-      </div>
+          label="Name"
+          pc="Enter your name"
+          type="text"
+          id="name"
+          v-model="userData.name"
+        />
 
-      <!-- PASSWORD -->
-      <div>
+        <!-- EMAIL -->
         <Input 
-        label="Password"
-        pc="Enter your password"
-        type="password"
-        id="password"
-        v-model="userData.password"
-        
-         />
-      </div> 
+          label="Email"
+          pc="Enter your email"
+          type="email"
+          id="email"
+          v-model="userData.email"
+        />
 
-      <Button type="submit" buttonName="submit" />
-    </form>
+        <!-- PASSWORD -->
+        <Input 
+          label="Password"
+          pc="Create your password"
+          type="password"
+          id="password"
+          v-model="userData.password"
+        /> 
+
+        <Button type="submit" buttonName="Signup" />
+      </form>
+      <p class="text-center mt-4">
+        Already have an account? 
+        <NuxtLink to="/auth/login" class="text-button font-semibold hover:underline">
+          Sign in
+        </NuxtLink>
+      </p>
+    </div>
   </div>
 </template>
+
 
 <script setup>
 import Input from '~/components/Input.vue';
 
-userData = ref({
+const userData = ref({
   name: '',
   email: '',
   password: ''
@@ -57,7 +59,7 @@ const handleSignup = async () => {
       method: 'POST',
       body: {...userData.value}
     })
-    alert('account crreated successfully!');
+    alert('account created successfully!');
     navigateTo(res.redirect)
   } catch (error) {
     alert('could not sign up try again');
