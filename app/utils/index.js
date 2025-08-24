@@ -1,0 +1,1 @@
+export const inputStyle = "p-2 border border-[#faa005] bg-orange-50 rounded-lg w-full"
